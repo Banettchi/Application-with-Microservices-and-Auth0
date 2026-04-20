@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Twitly — A Twitter-like App</title>
+  <meta name="description" content="A simplified Twitter-like application using Auth0 authentication. Post short messages up to 140 characters and see the public stream." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Auth0 SPA JS SDK (official) -->
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ─── Navbar ─────────────────────────────────────────────────────────── -->
+  <header class="navbar" role="banner">
+    <div class="navbar-inner">
+      <div class="navbar-brand">
+        <span class="brand-icon">🐦</span>
+        <span class="brand-name">Twitly</span>
+      </div>
+      <nav class="navbar-actions" aria-label="User actions">
+        <!-- Shown when logged out -->
+        <button id="btn-login" class="btn btn-primary" aria-label="Log in with Auth0">
+          Log In
+        </button>
+        <!-- Shown when logged in -->
+        <div id="user-menu" class="user-menu hidden">
+          <img id="user-avatar" src="" alt="User avatar" class="avatar" />
+          <span id="user-name" class="user-display-name"></span>
+          <button id="btn-logout" class="btn btn-outline" aria-label="Log out">
+            Log Out
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ─── Main Content ──────────────────────────────────────────────────── -->
+  <main class="main-content" role="main">
+    <div class="container">
+
+      <!-- Post Composer (only visible when authenticated) -->
+      <section id="composer-section" class="composer-card hidden" aria-label="Create new post">
+        <div class="composer-header">
+          <img id="composer-avatar" src="" alt="" class="avatar avatar-lg" />
+          <div class="composer-body">
+            <textarea
+              id="post-input"
+              class="composer-textarea"
+              placeholder="What's happening? (max 140 characters)"
+              maxlength="140"
+              rows="3"
+              aria-label="Post content"
+            ></textarea>
+            <div class="composer-footer">
+              <span id="char-count" class="char-count">140</span>
+              <button id="btn-post" class="btn btn-primary btn-post" aria-label="Post">
+                Post
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Login call-to-action (shown when logged out) -->
+      <section id="login-cta" class="login-cta" aria-label="Login prompt">
+        <div class="cta-card">
+          <div class="cta-icon">🐦</div>
+          <h1 class="cta-title">Welcome to Twitly</h1>
+          <p class="cta-subtitle">Join the conversation. Post up to 140 characters and share your thoughts with the world.</p>
+          <button id="btn-login-cta" class="btn btn-primary btn-large" aria-label="Get started with Auth0 login">
+            Get Started — Log In
+          </button>
+        </div>
+      </section>
+
+      <!-- Divider -->
+      <div class="stream-header">
+        <h2 class="stream-title">Public Stream</h2>
+        <button id="btn-refresh" class="btn btn-ghost btn-sm" aria-label="Refresh stream">
+          ↻ Refresh
+        </button>
+      </div>
+
+      <!-- Loading state -->
+      <div id="stream-loading" class="loading-state" aria-live="polite">
+        <div class="spinner" aria-label="Loading posts"></div>
+        <p>Loading posts...</p>
+      </div>
+
+      <!-- Empty state -->
+      <div id="stream-empty" class="empty-state hidden" aria-live="polite">
+        <div class="empty-icon">📭</div>
+        <p>No posts yet. Be the first to post!</p>
+      </div>
+
+      <!-- Stream feed -->
+      <section id="stream" class="stream" role="feed" aria-label="Public post stream">
+      </section>
+
+      <!-- Toast notification -->
+      <div id="toast" class="toast hidden" role="alert" aria-live="assertive"></div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

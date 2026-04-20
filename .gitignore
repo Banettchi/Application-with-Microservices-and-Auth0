@@ -1,0 +1,17 @@
+# Ignore secrets
+.env
+*.env.local
+
+# Maven
+backend/target/
+backend/.mvn/wrapper/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Node (if migrating to React later)
+frontend/node_modules/
+frontend/dist/
+frontend/.DS_Store
