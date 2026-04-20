@@ -30,8 +30,11 @@ import java.util.List;
  *   <li>PROTECTED (JWT required): POST /api/posts, GET /api/me</li>
  * </ul>
  */
+import org.springframework.context.annotation.Profile;
+
 @Configuration
 @EnableWebSecurity
+@Profile("!dev")
 public class SecurityConfig {
 
     @Value("${spring.security.oauth2.resourceserver.jwt.issuer-uri}")
