@@ -1,5 +1,7 @@
 # 🐸 Froakie — Twitter-like App
 
+### Kevyn Daniel Forero, Diego Alejandro Montes y María Juliana Rodríguez
+
 > Aplicación web inspirada en Twitter con autenticación Auth0, backend Spring Boot, microservicios en AWS Lambda y frontend en Netlify.
 
 ## Tabla de Contenidos
